@@ -180,7 +180,25 @@
             font-weight: 500;
         }
 
-        /* Projects Screen - NOW SHOWS LIVE APPS */
+        /* Skills Screen */
+        .skills-screen {
+            background: white;
+            gap: 15px;
+        }
+
+        .skill-category {
+            margin-bottom: 15px;
+        }
+
+        .category-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        /* Projects Screen */
         .projects-screen {
             background: #f9f9f9;
             gap: 15px;
@@ -204,12 +222,12 @@
 
         .app-preview-image {
             width: 100%;
-            height: 180px;
+            height: 160px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 60px;
+            font-size: 50px;
             color: white;
         }
 
@@ -389,7 +407,7 @@
                 <h1>Asfar</h1>
                 <p>iOS Developer</p>
                 <p>Creating Beautiful Apps</p>
-                <button class="cta-button" onclick="switchScreen('projects')">View My Apps</button>
+                <button class="cta-button" onclick="switchScreen('about')">Explore My Work</button>
             </div>
 
             <!-- About Screen -->
@@ -414,9 +432,63 @@
                 </div>
             </div>
 
-            <!-- Projects Screen - NOW DISPLAYS LIVE APPS -->
+            <!-- Skills Screen -->
+            <div class="screen skills-screen" id="skills">
+                <h2 class="section-title">Skills & Expertise</h2>
+
+                <div class="skill-category">
+                    <div class="category-title">🎯 Languages</div>
+                    <div>
+                        <span class="skill-tag">Swift</span>
+                        <span class="skill-tag">Objective-C</span>
+                        <span class="skill-tag">JavaScript</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="category-title">🛠️ Frameworks</div>
+                    <div>
+                        <span class="skill-tag">SwiftUI</span>
+                        <span class="skill-tag">UIKit</span>
+                        <span class="skill-tag">Combine</span>
+                        <span class="skill-tag">CoreData</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="category-title">🔌 APIs & Tools</div>
+                    <div>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Firebase</span>
+                        <span class="skill-tag">CloudKit</span>
+                        <span class="skill-tag">CoreLocation</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="category-title">📦 Development</div>
+                    <div>
+                        <span class="skill-tag">Xcode</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">CocoaPods</span>
+                        <span class="skill-tag">App Store</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="category-title">🎨 Design Patterns</div>
+                    <div>
+                        <span class="skill-tag">MVVM</span>
+                        <span class="skill-tag">MVC</span>
+                        <span class="skill-tag">Singleton</span>
+                        <span class="skill-tag">Observer</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Screen - Live Apps -->
             <div class="screen projects-screen" id="projects">
-                <h2 class="section-title">My Apps on App Store</h2>
+                <h2 class="section-title">My Live Apps 🚀</h2>
 
                 <!-- GFoods App -->
                 <div class="app-preview-card" onclick="window.open('https://apps.apple.com/th/app/gfoods/id1525122912', '_blank')">
@@ -490,6 +562,14 @@
                         <p>Follow my journey</p>
                     </div>
                 </div>
+
+                <div class="contact-item" onclick="openLink('https://linkedin.com')">
+                    <div class="contact-icon">💼</div>
+                    <div class="contact-content">
+                        <h3>LinkedIn</h3>
+                        <p>Connect with me</p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -502,6 +582,10 @@
             <div class="nav-item" onclick="switchScreen('about')">
                 <div class="nav-icon">👤</div>
                 <span>About</span>
+            </div>
+            <div class="nav-item" onclick="switchScreen('skills')">
+                <div class="nav-icon">⚙️</div>
+                <span>Skills</span>
             </div>
             <div class="nav-item" onclick="switchScreen('projects')">
                 <div class="nav-icon">📱</div>
@@ -528,7 +612,19 @@
             // Update nav items
             const navItems = document.querySelectorAll('.nav-item');
             navItems.forEach(item => item.classList.remove('active'));
-            event.target.closest('.nav-item').classList.add('active');
+            
+            // Find the nav item that matches the screen
+            const navButtons = document.querySelectorAll('.nav-item');
+            navButtons.forEach(btn => {
+                if (btn.textContent.toLowerCase().includes(screenId) || 
+                    (screenId === 'home' && btn.textContent.includes('Home')) ||
+                    (screenId === 'about' && btn.textContent.includes('About')) ||
+                    (screenId === 'skills' && btn.textContent.includes('Skills')) ||
+                    (screenId === 'projects' && btn.textContent.includes('Apps')) ||
+                    (screenId === 'contact' && btn.textContent.includes('Contact'))) {
+                    btn.classList.add('active');
+                }
+            });
 
             // Scroll to top
             document.querySelector('.app-container').scrollTop = 0;
