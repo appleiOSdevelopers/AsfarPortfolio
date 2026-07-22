@@ -180,70 +180,8 @@
             font-weight: 500;
         }
 
-        /* Projects Screen */
+        /* Projects Screen - NOW SHOWS LIVE APPS */
         .projects-screen {
-            background: #f9f9f9;
-            gap: 15px;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 15px;
-            padding: 15px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-
-        .project-card:active {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .project-icon {
-            font-size: 30px;
-            margin-bottom: 10px;
-        }
-
-        .project-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 5px;
-        }
-
-        .project-desc {
-            font-size: 12px;
-            color: #666;
-            line-height: 1.5;
-            margin-bottom: 10px;
-        }
-
-        .tech-stack {
-            font-size: 11px;
-            color: #667eea;
-            font-weight: 500;
-        }
-
-        .app-store-link {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 11px;
-            font-weight: 600;
-            margin-top: 10px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .app-store-link:active {
-            transform: scale(0.95);
-        }
-
-        /* Apps Screen */
-        .apps-screen {
             background: #f9f9f9;
             gap: 15px;
         }
@@ -256,6 +194,7 @@
             transition: transform 0.3s ease;
             display: flex;
             flex-direction: column;
+            cursor: pointer;
         }
 
         .app-preview-card:active {
@@ -317,6 +256,7 @@
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
+            border: none;
         }
 
         .download-btn:active {
@@ -449,7 +389,7 @@
                 <h1>Asfar</h1>
                 <p>iOS Developer</p>
                 <p>Creating Beautiful Apps</p>
-                <button class="cta-button" onclick="switchScreen('apps')">View My Apps</button>
+                <button class="cta-button" onclick="switchScreen('projects')">View My Apps</button>
             </div>
 
             <!-- About Screen -->
@@ -474,77 +414,44 @@
                 </div>
             </div>
 
-            <!-- Live Apps Screen -->
-            <div class="screen apps-screen" id="apps">
-                <h2 class="section-title">My Live Apps</h2>
+            <!-- Projects Screen - NOW DISPLAYS LIVE APPS -->
+            <div class="screen projects-screen" id="projects">
+                <h2 class="section-title">My Apps on App Store</h2>
 
                 <!-- GFoods App -->
-                <div class="app-preview-card">
+                <div class="app-preview-card" onclick="window.open('https://apps.apple.com/th/app/gfoods/id1525122912', '_blank')">
                     <div class="app-preview-image">🍔</div>
                     <div class="app-info">
                         <div class="app-name">GFoods</div>
                         <div class="app-category">Food & Dining</div>
                         <div class="app-description">Food delivery and restaurant discovery app with real-time tracking and seamless ordering experience.</div>
                         <div class="app-rating">⭐ Available on App Store</div>
-                        <a href="https://apps.apple.com/th/app/gfoods/id1525122912" target="_blank" class="download-btn">📥 View on App Store</a>
+                        <button class="download-btn" onclick="event.stopPropagation(); window.open('https://apps.apple.com/th/app/gfoods/id1525122912', '_blank')">📥 View on App Store</button>
                     </div>
                 </div>
 
                 <!-- G-Dukan App -->
-                <div class="app-preview-card">
+                <div class="app-preview-card" onclick="window.open('https://apps.apple.com/us/app/g-dukan/id6593688174', '_blank')">
                     <div class="app-preview-image">🏪</div>
                     <div class="app-info">
                         <div class="app-name">G-Dukan</div>
                         <div class="app-category">Shopping & Retail</div>
                         <div class="app-description">Complete shopping app featuring products, user-friendly checkout, and personalized recommendations for the best deals.</div>
                         <div class="app-rating">⭐ Available on App Store</div>
-                        <a href="https://apps.apple.com/us/app/g-dukan/id6593688174" target="_blank" class="download-btn">📥 View on App Store</a>
+                        <button class="download-btn" onclick="event.stopPropagation(); window.open('https://apps.apple.com/us/app/g-dukan/id6593688174', '_blank')">📥 View on App Store</button>
                     </div>
                 </div>
 
                 <!-- Planter Pro App -->
-                <div class="app-preview-card">
+                <div class="app-preview-card" onclick="window.open('https://apps.apple.com/gb/app/planter-pro/id6742592416', '_blank')">
                     <div class="app-preview-image">🌱</div>
                     <div class="app-info">
                         <div class="app-name">Planter Pro</div>
                         <div class="app-category">Gardening & Lifestyle</div>
                         <div class="app-description">Advanced gardening app with plant care guides, watering reminders, and expert tips to help you grow your garden.</div>
                         <div class="app-rating">⭐ Available on App Store</div>
-                        <a href="https://apps.apple.com/gb/app/planter-pro/id6742592416" target="_blank" class="download-btn">📥 View on App Store</a>
+                        <button class="download-btn" onclick="event.stopPropagation(); window.open('https://apps.apple.com/gb/app/planter-pro/id6742592416', '_blank')">📥 View on App Store</button>
                     </div>
-                </div>
-            </div>
-
-            <!-- Projects Screen -->
-            <div class="screen projects-screen" id="projects">
-                <h2 class="section-title">Sample Projects</h2>
-
-                <div class="project-card">
-                    <div class="project-icon">📱</div>
-                    <div class="project-title">Weather App</div>
-                    <div class="project-desc">Real-time weather application with live updates and beautiful UI</div>
-                    <div class="tech-stack">Swift • SwiftUI • CoreLocation</div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-icon">📝</div>
-                    <div class="project-title">Notes Manager</div>
-                    <div class="project-desc">Feature-rich note-taking app with cloud sync and search</div>
-                    <div class="tech-stack">Swift • CoreData • CloudKit</div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-icon">💰</div>
-                    <div class="project-title">Budget Tracker</div>
-                    <div class="project-desc">Track expenses and manage finances with visual analytics</div>
-                    <div class="tech-stack">Swift • Charts • CoreData</div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-icon">🎵</div>
-                    <div class="project-title">Music Player</div>
-                    <div class="project-desc">Advanced music player with playlist management</div>
-                    <div class="tech-stack">Swift • AVFoundation • UIKit</div>
                 </div>
             </div>
 
@@ -592,13 +499,13 @@
                 <div class="nav-icon">🏠</div>
                 <span>Home</span>
             </div>
-            <div class="nav-item" onclick="switchScreen('apps')">
-                <div class="nav-icon">📱</div>
-                <span>Apps</span>
+            <div class="nav-item" onclick="switchScreen('about')">
+                <div class="nav-icon">👤</div>
+                <span>About</span>
             </div>
             <div class="nav-item" onclick="switchScreen('projects')">
-                <div class="nav-icon">💼</div>
-                <span>Projects</span>
+                <div class="nav-icon">📱</div>
+                <span>Apps</span>
             </div>
             <div class="nav-item" onclick="switchScreen('contact')">
                 <div class="nav-icon">📞</div>
@@ -632,7 +539,7 @@
         }
 
         // Add touch feedback
-        document.querySelectorAll('.contact-item, .project-card, .app-preview-card, .cta-button, .nav-item, .download-btn').forEach(element => {
+        document.querySelectorAll('.contact-item, .app-preview-card, .cta-button, .nav-item, .download-btn').forEach(element => {
             element.addEventListener('touchstart', function() {
                 this.style.opacity = '0.7';
             });
