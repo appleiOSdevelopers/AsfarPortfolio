@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Asfar's iOS Developer Portfolio - Showcasing skills and projects">
+    <title>Asfar - iOS Developer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .mobile-frame {
+            width: 375px;
+            height: 812px;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 12px solid #000;
+        }
+
+        .notch {
+            width: 150px;
+            height: 28px;
+            background: #000;
+            border-radius: 0 0 20px 20px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+        }
+
+        .status-bar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 28px;
+        }
+
+        .status-left, .status-right {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .app-container {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .app-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .app-container::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 3px;
+        }
+
+        .screen {
+            display: none;
+            padding: 20px;
+            min-height: calc(812px - 140px);
+        }
+
+        .screen.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Home Screen */
+        .home-screen {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 20px;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            border: 3px solid white;
+        }
+
+        .home-screen h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .home-screen p {
+            font-size: 16px;
+            opacity: 0.9;
+            margin: 5px 0;
+        }
+
+        .cta-button {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .cta-button:active {
+            transform: scale(0.95);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* About Screen */
+        .about-screen {
+            background: white;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .about-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin: 5px 5px 5px 0;
+            font-weight: 500;
+        }
+
+        /* Projects Screen */
+        .projects-screen {
+            background: #f9f9f9;
+            gap: 15px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:active {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .project-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .project-desc {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .tech-stack {
+            font-size: 11px;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        /* Contact Screen */
+        .contact-screen {
+            background: white;
+        }
+
+        .contact-item {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:active {
+            background: #667eea;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            font-size: 24px;
+            min-width: 30px;
+        }
+
+        .contact-content h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .contact-content p {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 60px;
+            padding-bottom: 15px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            cursor: pointer;
+            flex: 1;
+            color: #999;
+            transition: all 0.3s ease;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .nav-item.active {
+            color: #667eea;
+        }
+
+        .nav-icon {
+            font-size: 24px;
+        }
+
+        .safe-area-bottom {
+            height: 15px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        /* Loading & Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .screen.active {
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 400px) {
+            .mobile-frame {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 9/18;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-frame">
+        <div class="notch"></div>
+
+        <div class="status-bar">
+            <div class="status-left">
+                <span>9:41</span>
+            </div>
+            <div class="status-right">
+                <span>📶</span>
+                <span>📡</span>
+                <span>🔋</span>
+            </div>
+        </div>
+
+        <div class="app-container">
+            <!-- Home Screen -->
+            <div class="screen home-screen active" id="home">
+                <div class="profile-avatar">👨‍💻</div>
+                <h1>Asfar</h1>
+                <p>iOS Developer</p>
+                <p>Creating Beautiful Apps</p>
+                <button class="cta-button" onclick="switchScreen('about')">Explore My Work</button>
+            </div>
+
+            <!-- About Screen -->
+            <div class="screen about-screen" id="about">
+                <h2 class="section-title">About Me</h2>
+                <p class="about-text">
+                    I'm a passionate iOS developer with expertise in Swift, SwiftUI, and Objective-C. I create elegant, user-friendly applications that solve real-world problems.
+                </p>
+                
+                <h2 class="section-title">Skills</h2>
+                <div>
+                    <span class="skill-tag">Swift</span>
+                    <span class="skill-tag">SwiftUI</span>
+                    <span class="skill-tag">Objective-C</span>
+                    <span class="skill-tag">CoreData</span>
+                    <span class="skill-tag">UIKit</span>
+                    <span class="skill-tag">REST APIs</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">Xcode</span>
+                </div>
+            </div>
+
+            <!-- Projects Screen -->
+            <div class="screen projects-screen" id="projects">
+                <h2 class="section-title">My Projects</h2>
+
+                <div class="project-card">
+                    <div class="project-icon">📱</div>
+                    <div class="project-title">Weather App</div>
+                    <div class="project-desc">Real-time weather application with live updates and beautiful UI</div>
+                    <div class="tech-stack">Swift • SwiftUI • CoreLocation</div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">📝</div>
+                    <div class="project-title">Notes Manager</div>
+                    <div class="project-desc">Feature-rich note-taking app with cloud sync and search</div>
+                    <div class="tech-stack">Swift • CoreData • CloudKit</div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">💰</div>
+                    <div class="project-title">Budget Tracker</div>
+                    <div class="project-desc">Track expenses and manage finances with visual analytics</div>
+                    <div class="tech-stack">Swift • Charts • CoreData</div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">🎵</div>
+                    <div class="project-title">Music Player</div>
+                    <div class="project-desc">Advanced music player with playlist management</div>
+                    <div class="tech-stack">Swift • AVFoundation • UIKit</div>
+                </div>
+            </div>
+
+            <!-- Contact Screen -->
+            <div class="screen contact-screen" id="contact">
+                <h2 class="section-title">Get In Touch</h2>
+
+                <div class="contact-item" onclick="openLink('mailto:asfar@example.com')">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-content">
+                        <h3>Email</h3>
+                        <p>asfar@example.com</p>
+                    </div>
+                </div>
+
+                <div class="contact-item" onclick="openLink('https://github.com/appleiOSdevelopers')">
+                    <div class="contact-icon">🐙</div>
+                    <div class="contact-content">
+                        <h3>GitHub</h3>
+                        <p>appleiOSdevelopers</p>
+                    </div>
+                </div>
+
+                <div class="contact-item" onclick="openLink('https://linkedin.com')">
+                    <div class="contact-icon">💼</div>
+                    <div class="contact-content">
+                        <h3>LinkedIn</h3>
+                        <p>Connect with me</p>
+                    </div>
+                </div>
+
+                <div class="contact-item" onclick="openLink('https://twitter.com')">
+                    <div class="contact-icon">𝕏</div>
+                    <div class="contact-content">
+                        <h3>Twitter</h3>
+                        <p>Follow my journey</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <div class="nav-item active" onclick="switchScreen('home')">
+                <div class="nav-icon">🏠</div>
+                <span>Home</span>
+            </div>
+            <div class="nav-item" onclick="switchScreen('about')">
+                <div class="nav-icon">👤</div>
+                <span>About</span>
+            </div>
+            <div class="nav-item" onclick="switchScreen('projects')">
+                <div class="nav-icon">💼</div>
+                <span>Projects</span>
+            </div>
+            <div class="nav-item" onclick="switchScreen('contact')">
+                <div class="nav-icon">📞</div>
+                <span>Contact</span>
+            </div>
+        </div>
+
+        <div class="safe-area-bottom"></div>
+    </div>
+
+    <script>
+        function switchScreen(screenId) {
+            // Hide all screens
+            const screens = document.querySelectorAll('.screen');
+            screens.forEach(screen => screen.classList.remove('active'));
+
+            // Show selected screen
+            document.getElementById(screenId).classList.add('active');
+
+            // Update nav items
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+            event.target.closest('.nav-item').classList.add('active');
+
+            // Scroll to top
+            document.querySelector('.app-container').scrollTop = 0;
+        }
+
+        function openLink(url) {
+            window.open(url, '_blank');
+        }
+
+        // Add touch feedback
+        document.querySelectorAll('.contact-item, .project-card, .cta-button, .nav-item').forEach(element => {
+            element.addEventListener('touchstart', function() {
+                this.style.opacity = '0.7';
+            });
+            element.addEventListener('touchend', function() {
+                this.style.opacity = '1';
+            });
+        });
+    </script>
+</body>
+</html>
