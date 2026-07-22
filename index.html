@@ -503,38 +503,38 @@
                 <h2 class="section-title">My Live Apps 🚀</h2>
 
                 <!-- GFoods App -->
-                <div class="app-preview-card" onclick="window.open('https://apps.apple.com/th/app/gfoods/id1525122912', '_blank')">
+                <div class="app-preview-card" onclick="openAppStore('https://apps.apple.com/th/app/gfoods/id1525122912')">
                     <div class="app-preview-image">🍔</div>
                     <div class="app-info">
                         <div class="app-name">GFoods</div>
                         <div class="app-category">Food & Dining</div>
                         <div class="app-description">Food delivery and restaurant discovery app with real-time tracking and seamless ordering experience.</div>
                         <div class="app-rating">⭐ Available on App Store</div>
-                        <button class="download-btn" onclick="event.stopPropagation(); window.open('https://apps.apple.com/th/app/gfoods/id1525122912', '_blank')">📥 View on App Store</button>
+                        <button class="download-btn" onclick="event.stopPropagation(); openAppStore('https://apps.apple.com/th/app/gfoods/id1525122912')">📥 View on App Store</button>
                     </div>
                 </div>
 
                 <!-- G-Dukan App -->
-                <div class="app-preview-card" onclick="window.open('https://apps.apple.com/us/app/g-dukan/id6593688174', '_blank')">
+                <div class="app-preview-card" onclick="openAppStore('https://apps.apple.com/us/app/g-dukan/id6593688174')">
                     <div class="app-preview-image">🏪</div>
                     <div class="app-info">
                         <div class="app-name">G-Dukan</div>
                         <div class="app-category">Shopping & Retail</div>
                         <div class="app-description">Complete shopping app featuring products, user-friendly checkout, and personalized recommendations for the best deals.</div>
                         <div class="app-rating">⭐ Available on App Store</div>
-                        <button class="download-btn" onclick="event.stopPropagation(); window.open('https://apps.apple.com/us/app/g-dukan/id6593688174', '_blank')">📥 View on App Store</button>
+                        <button class="download-btn" onclick="event.stopPropagation(); openAppStore('https://apps.apple.com/us/app/g-dukan/id6593688174')">📥 View on App Store</button>
                     </div>
                 </div>
 
                 <!-- Tree Tracker Pro App -->
-                <div class="app-preview-card" onclick="window.open('https://apps.apple.com/gb/app/planter-pro/id6742592416', '_blank')">
+                <div class="app-preview-card" onclick="openAppStore('https://apps.apple.com/gb/app/planter-pro/id6742592416')">
                     <div class="app-preview-image">🌳</div>
                     <div class="app-info">
                         <div class="app-name">Tree Tracker Pro</div>
                         <div class="app-category">Environment & Tracking</div>
                         <div class="app-description">Advanced tree tracking app with growth monitoring, maintenance reminders, and environmental impact analytics for forestry and gardening.</div>
                         <div class="app-rating">⭐ Available on App Store</div>
-                        <button class="download-btn" onclick="event.stopPropagation(); window.open('https://apps.apple.com/gb/app/planter-pro/id6742592416', '_blank')">📥 View on App Store</button>
+                        <button class="download-btn" onclick="event.stopPropagation(); openAppStore('https://apps.apple.com/gb/app/planter-pro/id6742592416')">📥 View on App Store</button>
                     </div>
                 </div>
             </div>
@@ -543,11 +543,19 @@
             <div class="screen contact-screen" id="contact">
                 <h2 class="section-title">Get In Touch</h2>
 
-                <div class="contact-item" onclick="openLink('mailto:asfar@example.com')">
+                <div class="contact-item" onclick="sendEmail('asferhussainsidiqui@gmail.com')">
                     <div class="contact-icon">✉️</div>
                     <div class="contact-content">
                         <h3>Email</h3>
-                        <p>asfar@example.com</p>
+                        <p>asferhussainsidiqui@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="contact-item" onclick="callPhone('+923234278971')">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-content">
+                        <h3>Mobile</h3>
+                        <p>+92 323 4278971</p>
                     </div>
                 </div>
 
@@ -559,7 +567,7 @@
                     </div>
                 </div>
 
-                <div class="contact-item" onclick="openLink('https://apps.apple.com/developer/asfar')">
+                <div class="contact-item" onclick="openAppStore('https://apps.apple.com/developer/asfar')">
                     <div class="contact-icon">📲</div>
                     <div class="contact-content">
                         <h3>App Store</h3>
@@ -575,7 +583,7 @@
                     </div>
                 </div>
 
-                <div class="contact-item" onclick="openLink('https://www.linkedin.com/in/asfarhussainsiddiqui/')">
+                <div class="contact-item" onclick="openLink('https://linkedin.com')">
                     <div class="contact-icon">💼</div>
                     <div class="contact-content">
                         <h3>LinkedIn</h3>
@@ -640,6 +648,26 @@
 
             // Scroll to top
             document.querySelector('.app-container').scrollTop = 0;
+        }
+
+        function sendEmail(email) {
+            window.location.href = 'mailto:' + email;
+        }
+
+        function callPhone(phone) {
+            window.location.href = 'tel:' + phone;
+        }
+
+        function openAppStore(url) {
+            // iOS App Store URL scheme
+            if (/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase())) {
+                // On iOS, use the app:// scheme first, fallback to https
+                const appUrl = url.replace('https://apps.apple.com', 'itms-apps://');
+                window.location.href = appUrl;
+            } else {
+                // On other devices, open the web version
+                window.open(url, '_blank');
+            }
         }
 
         function openLink(url) {
