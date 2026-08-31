@@ -70,6 +70,11 @@
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-y: contain;
+            scrollbar-width: thin;
+            scrollbar-color: #1877f2 #e7f0ff;
         }
 
         .app-container::-webkit-scrollbar {
@@ -81,8 +86,18 @@
         }
 
         .app-container::-webkit-scrollbar-thumb {
-            background: #ccc;
-            border-radius: 3px;
+            background: linear-gradient(180deg, #1877f2, #4267b2);
+            border: 1px solid #e7f0ff;
+            border-radius: 999px;
+        }
+
+        .app-container::-webkit-scrollbar-thumb:hover {
+            background: #166fe5;
+        }
+
+        .app-container::-webkit-scrollbar-track {
+            background: #e7f0ff;
+            border-radius: 999px;
         }
 
         .screen {
@@ -683,6 +698,698 @@
             background: linear-gradient(135deg, #42b72a 0%, #2f9e1f 100%);
         }
 
+        .home-screen {
+            position: relative;
+            min-height: calc(812px - 140px);
+            padding: 34px 24px 30px;
+            justify-content: space-between;
+            align-items: stretch;
+            overflow: hidden;
+            background: linear-gradient(155deg, #0d47a1 0%, #1877f2 52%, #5a9cf5 100%);
+        }
+
+        .home-screen::before,
+        .home-screen::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,.1);
+            pointer-events: none;
+        }
+
+        .home-screen::before { width: 260px; height: 260px; right: -120px; top: -50px; }
+        .home-screen::after { width: 180px; height: 180px; left: -110px; bottom: 55px; }
+
+        .home-topline,
+        .home-content,
+        .home-footer { position: relative; z-index: 1; }
+
+        .home-topline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: rgba(255,255,255,.78);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .home-mark {
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(255,255,255,.5);
+            border-radius: 11px;
+            color: white;
+            font-weight: 900;
+            letter-spacing: -.08em;
+        }
+
+        .home-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+        .profile-avatar {
+            width: 126px;
+            height: 126px;
+            margin-bottom: 18px;
+            border: 5px solid rgba(255,255,255,.95);
+            background: rgba(255,255,255,.16);
+            box-shadow: 0 18px 35px rgba(5,33,86,.3);
+        }
+
+        .profile-avatar img,
+        .splash-logo {
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .home-screen h1 {
+            margin: 0;
+            font-size: 39px;
+            line-height: 1;
+            letter-spacing: -.065em;
+        }
+
+        .home-role {
+            margin: 12px 0 0;
+            color: #dceaff;
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .home-copy {
+            max-width: 285px;
+            margin: 12px 0 0 !important;
+            color: rgba(255,255,255,.82);
+            font-size: 13px !important;
+            line-height: 1.55;
+        }
+
+        .home-footer { display: grid; gap: 16px; }
+
+        .home-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 7px;
+        }
+
+        .home-stat {
+            padding: 10px 5px;
+            border: 1px solid rgba(255,255,255,.2);
+            border-radius: 13px;
+            background: rgba(255,255,255,.11);
+            text-align: center;
+        }
+
+        .home-stat strong {
+            display: block;
+            color: white;
+            font-size: 18px;
+            line-height: 1.1;
+            letter-spacing: -.04em;
+        }
+
+        .home-stat span {
+            display: block;
+            margin-top: 3px;
+            color: rgba(255,255,255,.7);
+            font-size: 9px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .home-stat { animation: contentRise .5s ease both; }
+        .home-stat:nth-child(2) { animation-delay: .08s; }
+        .home-stat:nth-child(3) { animation-delay: .16s; }
+
+        .home-meta {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .home-meta span {
+            padding: 6px 9px;
+            border: 1px solid rgba(255,255,255,.24);
+            border-radius: 999px;
+            color: rgba(255,255,255,.9);
+            background: rgba(255,255,255,.1);
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .home-screen .cta-button {
+            width: 100%;
+            margin: 0;
+            padding: 14px 24px;
+            color: #1458bc;
+            box-shadow: 0 12px 24px rgba(3,37,96,.22);
+        }
+
+        .ai-project-card .app-preview-image {
+            background: linear-gradient(135deg, #6d4aff 0%, #b14cff 100%);
+        }
+
+        .ai-project-card .app-preview-image::after {
+            content: "AI PRODUCT WORK";
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            padding: 6px 9px;
+            border-radius: 8px;
+            color: #fff;
+            background: rgba(0,0,0,.55);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .05em;
+        }
+
+        /* Compact presentation: show more content without making controls tiny. */
+        .mobile-frame {
+            transform: scale(.9);
+            transform-origin: center center;
+        }
+
+        @media (max-width: 400px) {
+            .mobile-frame {
+                transform: scale(.96);
+            }
+        }
+
+        .home-screen {
+            padding: 24px 20px 22px;
+        }
+
+        .home-content {
+            transform: scale(.92);
+        }
+
+        .home-content .profile-avatar {
+            width: 112px;
+            height: 112px;
+            margin-bottom: 13px;
+        }
+
+        .home-screen h1 {
+            font-size: 35px;
+        }
+
+        .home-role {
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        .home-copy {
+            margin-top: 8px !important;
+            font-size: 12px !important;
+        }
+
+        .home-footer {
+            gap: 10px;
+        }
+
+        .home-stats {
+            gap: 5px;
+        }
+
+        .home-stat {
+            padding: 8px 4px;
+        }
+
+        .home-stat strong {
+            font-size: 16px;
+        }
+
+        .home-stat span {
+            font-size: 8px;
+        }
+
+        /* Decorative heading treatment */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            position: relative;
+            padding-left: 13px;
+            border-bottom: 0;
+            letter-spacing: -.03em;
+        }
+
+        .section-title::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 4px;
+            bottom: 4px;
+            width: 4px;
+            border-radius: 4px;
+            background: linear-gradient(180deg, #1877f2, #42b72a);
+        }
+
+        .section-title::after {
+            content: "";
+            flex: 1;
+            height: 2px;
+            margin-top: 7px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #1877f2, transparent);
+        }
+
+        .home-screen h1 {
+            text-shadow: 0 5px 18px rgba(6,43,106,.28);
+        }
+
+        .home-screen h1::after {
+            content: "";
+            display: block;
+            width: 42px;
+            height: 4px;
+            margin: 13px auto 0;
+            border-radius: 99px;
+            background: #42b72a;
+        }
+
+        .experience-list {
+            display: grid;
+            gap: 11px;
+            margin-bottom: 20px;
+        }
+
+        .experience-card {
+            position: relative;
+            padding: 15px 15px 15px 19px;
+            border: 1px solid #e1e7f0;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(28,30,33,.06);
+            overflow: hidden;
+        }
+
+        .experience-card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #1877f2;
+        }
+
+        .experience-card:nth-child(2)::before { background: #42b72a; }
+        .experience-card:nth-child(3)::before { background: #8b5cf6; }
+        .experience-card h3 { margin: 0; color: #1c1e21; font-size: 15px; }
+        .experience-card .experience-company { color: #1877f2; font-weight: 700; }
+        .experience-card .experience-date { display: block; margin-top: 3px; color: #718096; font-size: 11px; font-weight: 700; }
+        .experience-card p { margin: 7px 0 0; color: #61708a; font-size: 12px; line-height: 1.45; }
+
+        .experience-list {
+            position: relative;
+            gap: 14px;
+            padding-left: 13px;
+        }
+
+        .experience-list::before {
+            content: "";
+            position: absolute;
+            left: 3px;
+            top: 9px;
+            bottom: 9px;
+            width: 2px;
+            background: linear-gradient(#1877f2, #8b5cf6);
+        }
+
+        .experience-card::after {
+            content: "";
+            position: absolute;
+            left: -16px;
+            top: 20px;
+            width: 9px;
+            height: 9px;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            background: #1877f2;
+            box-shadow: 0 0 0 2px #1877f2;
+        }
+
+        .experience-card:nth-child(2)::after { background: #42b72a; box-shadow: 0 0 0 2px #42b72a; }
+        .experience-card:nth-child(3)::after { background: #8b5cf6; box-shadow: 0 0 0 2px #8b5cf6; }
+        .experience-card h3 { line-height: 1.3; }
+
+        .experience-card:first-child {
+            background: linear-gradient(135deg, #f7fbff, #eef6ff);
+            border-color: #cfe1fb;
+        }
+
+        .experience-card:first-child .experience-company { color: #1458bc; }
+
+        .about-screen .section-title {
+            font-size: 21px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+        }
+
+        .about-screen .section-title:first-child {
+            margin-top: 0;
+        }
+
+        .about-screen .about-text {
+            margin-bottom: 24px;
+            line-height: 1.65;
+        }
+
+        .experience-card h3 {
+            font-size: 14px;
+            line-height: 1.35;
+        }
+
+        .experience-company {
+            display: inline;
+        }
+
+        .experience-card .experience-date {
+            font-size: 10px;
+            line-height: 1.35;
+        }
+
+        .experience-card p {
+            font-size: 12px;
+            line-height: 1.55;
+            overflow-wrap: anywhere;
+        }
+
+        .experience-current {
+            display: inline-block;
+            margin-top: 7px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            color: #247a1d;
+            background: #e8f8e5;
+            font-size: 9px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+
+        .about-screen .experience-list {
+            margin-left: -8px;
+            margin-right: -8px;
+            padding-left: 0;
+        }
+
+        .about-screen .experience-list::before {
+            display: none;
+        }
+
+        .about-screen .experience-card {
+            padding-left: 28px;
+        }
+
+        .about-screen .experience-card::after {
+            left: 9px;
+            width: 7px;
+            height: 7px;
+            border-width: 2px;
+        }
+
+        .experience-card {
+            cursor: pointer;
+        }
+
+        .experience-card:hover h3 {
+            color: #1877f2;
+        }
+
+        .details-screen {
+            display: none;
+            padding: 20px;
+            min-height: calc(812px - 140px);
+            background: #f8fbff;
+        }
+
+        .details-screen.active {
+            display: flex;
+            flex-direction: column;
+            animation: screenEnter .42s cubic-bezier(.2,.8,.2,1);
+        }
+
+        .details-back {
+            align-self: flex-start;
+            margin-bottom: 24px;
+            padding: 8px 12px;
+            border: 0;
+            border-radius: 999px;
+            color: #1877f2;
+            background: #e7f0ff;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .details-kicker {
+            color: #1877f2;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .details-screen h2 {
+            margin: 8px 0 4px;
+            color: #1c1e21;
+            font-size: 29px;
+            line-height: 1.1;
+            letter-spacing: -.05em;
+        }
+
+        .details-period {
+            color: #61708a;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .details-card {
+            margin-top: 24px;
+            padding: 20px;
+            border: 1px solid #dce7f5;
+            border-radius: 18px;
+            background: #ffffff;
+            box-shadow: 0 8px 20px rgba(28,30,33,.07);
+        }
+
+        .details-card h3 {
+            margin: 0 0 12px;
+            color: #1877f2;
+            font-size: 15px;
+        }
+
+        .details-card ul {
+            margin: 0;
+            padding-left: 18px;
+            color: #53627a;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .experience-card h3 {
+            overflow-wrap: anywhere;
+        }
+
+        .experience-card .experience-company {
+            display: block;
+            margin-top: 2px;
+        }
+
+        .contact-item {
+            position: relative;
+            min-height: 70px;
+            padding: 12px 38px 12px 12px;
+            border: 1px solid #e1e7f0;
+            border-radius: 18px;
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(28,30,33,.06);
+            transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+        }
+
+        .contact-item::after {
+            content: "›";
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            color: #1877f2;
+            font-size: 25px;
+            font-weight: 300;
+            transform: translateY(-53%);
+        }
+
+        .contact-item:hover {
+            border-color: #b9d2f8;
+            box-shadow: 0 8px 18px rgba(24,119,242,.13);
+            transform: translateX(4px);
+        }
+
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            color: #1877f2;
+            background: #e7f0ff;
+            font-size: 21px;
+        }
+
+        .contact-item:nth-of-type(2) .contact-icon { color: #42b72a; background: #e8f8e5; }
+        .contact-item:nth-of-type(3) .contact-icon { color: #7c58d8; background: #f0eaff; }
+        .contact-item:nth-of-type(4) .contact-icon { color: #e47728; background: #fff0e4; }
+        .contact-item:nth-of-type(5) .contact-icon { color: #15233d; background: #e9edf3; }
+        .contact-item:nth-of-type(6) .contact-icon { color: #0a66c2; background: #e1f0ff; }
+
+        .contact-content h3 {
+            color: #1c1e21;
+            font-size: 14px;
+        }
+
+        .contact-content p {
+            color: #61708a;
+            opacity: 1;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-icon svg {
+            width: 22px;
+            height: 22px;
+            display: block;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .screen.active .app-preview-card {
+            animation-name: cardFromRight;
+        }
+
+        @keyframes cardFromRight {
+            from { opacity: 0; transform: translateX(28px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .objective-text {
+            padding: 14px 15px;
+            border-left: 4px solid #1877f2;
+            border-radius: 0 12px 12px 0;
+            background: #f0f2f5;
+            color: #3f4d63;
+        }
+
+        /* Interactive polish and selected-tab state */
+        .nav-bar {
+            height: 68px;
+            padding: 5px 5px 15px;
+            box-shadow: 0 -8px 22px rgba(28, 30, 33, .08);
+        }
+
+        .nav-item {
+            min-height: 48px;
+            border-radius: 14px;
+            padding: 4px 2px;
+            transition: background .22s ease, color .22s ease, transform .22s ease, box-shadow .22s ease;
+        }
+
+        .nav-item.active {
+            color: #1877f2;
+            background: #e7f0ff;
+            box-shadow: inset 0 0 0 1px #c8dcff;
+            transform: translateY(-3px);
+        }
+
+        .nav-item.active .nav-icon {
+            transform: scale(1.12);
+        }
+
+        .nav-icon { transition: transform .22s ease; }
+
+        .screen.active {
+            animation: screenEnter .42s cubic-bezier(.2,.8,.2,1);
+        }
+
+        .screen.active .app-preview-card,
+        .screen.active .skill-category,
+        .screen.active .contact-item {
+            animation: contentRise .42s ease both;
+        }
+
+        .screen.active .app-preview-card:nth-child(2),
+        .screen.active .skill-category:nth-child(2),
+        .screen.active .contact-item:nth-child(2) { animation-delay: .06s; }
+
+        .screen.active .app-preview-card:nth-child(3),
+        .screen.active .skill-category:nth-child(3),
+        .screen.active .contact-item:nth-child(3) { animation-delay: .12s; }
+
+        .screen.active .app-preview-card:nth-child(4),
+        .screen.active .skill-category:nth-child(4),
+        .screen.active .contact-item:nth-child(4) { animation-delay: .18s; }
+
+        .skill-tag { transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
+        .skill-tag:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(24,119,242,.2); background: #166fe5; }
+        .app-preview-card, .contact-item { will-change: transform; }
+        .app-preview-card:hover { transform: translateY(-4px); }
+        .contact-item:hover { transform: translateX(4px); box-shadow: 0 5px 14px rgba(28,30,33,.08); }
+
+        @keyframes screenEnter {
+            from { opacity: 0; transform: translateX(12px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes contentRise {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        body.loaded .mobile-frame { animation: frameReveal .7s cubic-bezier(.2,.8,.2,1) both; }
+        body.loaded .status-bar { animation: topReveal .55s ease-out .15s both; }
+        body.loaded .home-topline { animation: contentRise .5s ease-out .35s both; }
+        body.loaded .home-content { animation: contentRise .6s ease-out .42s both; }
+        body.loaded .home-footer { animation: contentRise .55s ease-out .52s both; }
+        body.loaded .nav-bar { animation: navReveal .55s ease-out .65s both; }
+
+        .button, .cta-button, .download-btn { transition: transform .2s ease, box-shadow .2s ease, filter .2s ease; }
+        .button:hover, .cta-button:hover, .download-btn:hover { filter: brightness(1.06); box-shadow: 0 8px 18px rgba(24,119,242,.24); }
+        .app-preview-image { transition: filter .25s ease, transform .25s ease; }
+        .app-preview-card:hover .app-preview-image { filter: saturate(1.12); }
+        .app-store-launch span { animation: badgeGlow 2.2s ease-in-out infinite; }
+        .section-title { animation: underlineReveal .5s ease-out both; }
+
+        @keyframes frameReveal {
+            from { opacity: 0; transform: scale(.86); }
+            to { opacity: 1; transform: scale(.9); }
+        }
+        @keyframes topReveal {
+            from { opacity: 0; transform: translateY(-12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes navReveal {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes badgeGlow {
+            0%, 100% { box-shadow: 0 0 0 rgba(255,255,255,0); }
+            50% { box-shadow: 0 0 0 4px rgba(255,255,255,.1); }
+        }
+        @keyframes underlineReveal {
+            from { opacity: .4; transform: translateX(-8px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+        }
+
         .splash-screen {
             position: absolute;
             inset: 0;
@@ -820,14 +1527,288 @@
             stroke-linecap: round;
             stroke-linejoin: round;
         }
+
+        /* iOS skin */
+        :root {
+            --ios-blue: #007aff;
+            --ios-label: #1c1c1e;
+            --ios-secondary: #6d6d72;
+            --ios-fill: rgba(120, 120, 128, .14);
+            --ios-grouped: #f2f2f7;
+            --ios-separator: rgba(60, 60, 67, .16);
+        }
+
+        body {
+            background:
+                radial-gradient(circle at 50% 5%, rgba(255,255,255,.95), transparent 35%),
+                linear-gradient(145deg, #dbe7f7 0%, #eef2f7 45%, #d9e0eb 100%);
+            padding: 28px;
+        }
+
+        .mobile-frame {
+            width: 390px;
+            height: 844px;
+            border: 8px solid #171719;
+            border-radius: 52px;
+            background: #f2f2f7;
+            box-shadow: 0 28px 70px rgba(23, 35, 55, .3), 0 3px 0 rgba(255,255,255,.6) inset;
+        }
+
+        .mobile-frame::before,
+        .mobile-frame::after {
+            content: "";
+            position: absolute;
+            left: -11px;
+            width: 3px;
+            border-radius: 3px 0 0 3px;
+            background: #343438;
+            z-index: 90;
+        }
+
+        .mobile-frame::before { top: 118px; height: 30px; box-shadow: 0 48px 0 #343438, 0 88px 0 #343438; }
+        .mobile-frame::after { right: -11px; left: auto; top: 176px; height: 72px; border-radius: 0 3px 3px 0; }
+
+        .notch {
+            width: 126px;
+            height: 34px;
+            top: 5px;
+            background: #09090a;
+            border-radius: 0 0 19px 19px;
+        }
+
+        .notch::after {
+            content: "";
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            right: 17px;
+            top: 12px;
+            border-radius: 50%;
+            background: #101114;
+            box-shadow: inset 0 0 0 1px #25262a, 0 0 0 1px rgba(255,255,255,.04);
+        }
+
+        .status-bar {
+            height: 51px;
+            padding: 8px 22px 7px;
+            padding-top: 21px;
+            background: rgba(255,255,255,.72);
+            color: var(--ios-label);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .01em;
+            backdrop-filter: blur(22px) saturate(160%);
+            -webkit-backdrop-filter: blur(22px) saturate(160%);
+        }
+
+        .status-right { gap: 6px; font-size: 11px; filter: grayscale(1); }
+        .status-icon { display: inline-flex; align-items: center; justify-content: center; color: var(--ios-label); }
+        .status-icon svg { display: block; width: 17px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.65; stroke-linecap: round; stroke-linejoin: round; }
+        .battery-icon svg { width: 24px; }
+        .cellular-icon { gap: 2px; }
+        .cellular-icon::after { content: ""; width: 3px; height: 3px; border-radius: 50%; background: var(--ios-blue); animation: iosSignalDot 1.15s ease-in-out infinite; }
+
+        .app-container {
+            background: var(--ios-grouped);
+            scrollbar-color: rgba(60,60,67,.28) transparent;
+        }
+
+        .screen {
+            padding: 24px 18px 30px;
+            min-height: calc(844px - 145px);
+        }
+
+        .home-screen {
+            position: relative;
+            isolation: isolate;
+            background:
+                radial-gradient(circle at 17% 12%, rgba(255,255,255,.9), transparent 24%),
+                radial-gradient(circle at 88% 31%, rgba(148, 205, 255, .8), transparent 30%),
+                linear-gradient(160deg, #eaf5ff 0%, #b9dafe 46%, #edf3ff 100%);
+            color: var(--ios-label);
+            justify-content: space-between;
+            gap: 16px;
+            text-align: left;
+        }
+
+        .home-screen::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            opacity: .35;
+            background: radial-gradient(circle at 55% 55%, transparent 0 19%, rgba(255,255,255,.55) 20%, transparent 45%);
+            filter: blur(18px);
+        }
+
+        .home-topline { color: rgba(28,28,30,.58); font-size: 12px; font-weight: 600; letter-spacing: .02em; }
+        .home-mark { color: var(--ios-blue); background: rgba(255,255,255,.65); border: 1px solid rgba(255,255,255,.8); border-radius: 50%; padding: 7px 6px; }
+        .home-content { align-items: flex-start; max-width: 330px; }
+
+        .profile-avatar {
+            width: 112px;
+            height: 112px;
+            border: 5px solid rgba(255,255,255,.84);
+            box-shadow: 0 12px 28px rgba(39, 99, 161, .24);
+            background: rgba(255,255,255,.35);
+        }
+
+        .home-screen h1 { margin: 18px 0 3px; font-size: 38px; line-height: 1.02; letter-spacing: -.055em; }
+        .home-screen p { margin: 0; }
+        .home-role { color: var(--ios-blue); font-weight: 700; font-size: 16px; }
+        .home-title { color: rgba(28,28,30,.58); font-size: 12px !important; font-weight: 600; margin-top: 4px !important; }
+        .home-copy { max-width: 285px; margin-top: 12px !important; color: rgba(28,28,30,.72); line-height: 1.45; }
+        .home-footer { width: 100%; }
+        .home-stats { gap: 8px; }
+        .home-stat { flex: 1; min-width: 0; padding: 12px 10px; border: 1px solid rgba(255,255,255,.7); background: rgba(255,255,255,.43); border-radius: 17px; box-shadow: 0 8px 22px rgba(59, 100, 150, .08); backdrop-filter: blur(16px); }
+        .home-stat strong { color: var(--ios-label); font-size: 20px; }
+        .home-stat span { color: rgba(28,28,30,.58); font-size: 10px; line-height: 1.2; }
+        .home-meta { gap: 7px; flex-wrap: wrap; margin: 16px 0 14px; }
+        .home-meta span { padding: 6px 10px; color: #0759b6; background: rgba(255,255,255,.52); border: 1px solid rgba(255,255,255,.65); border-radius: 999px; font-size: 10px; font-weight: 700; }
+        .cta-button { width: 100%; padding: 14px 18px; margin-top: 0; border-radius: 14px; background: var(--ios-blue); color: white; font-size: 15px; box-shadow: 0 8px 18px rgba(0,122,255,.25); }
+
+        .about-screen, .skills-screen, .contact-screen, .details-screen { background: var(--ios-grouped); }
+        .section-title { margin-bottom: 14px; padding-bottom: 10px; border-bottom: 0; color: var(--ios-label); font-size: 28px; letter-spacing: -.045em; }
+        .about-text { color: var(--ios-secondary); font-size: 15px; line-height: 1.55; }
+        .skill-tag { padding: 8px 12px; margin: 4px 3px 4px 0; border-radius: 999px; background: rgba(0,122,255,.12); color: #0066d6; font-size: 12px; font-weight: 700; }
+        .category-title { color: var(--ios-secondary); font-size: 12px; letter-spacing: .06em; }
+        .experience-card, .details-card { border: 1px solid var(--ios-separator); border-radius: 18px; background: rgba(255,255,255,.72); box-shadow: 0 4px 16px rgba(50,60,75,.05); }
+        .experience-card h3, .details-card h3 { color: var(--ios-label); }
+        .experience-card .experience-company { color: var(--ios-blue); }
+
+        .projects-screen { background: var(--ios-grouped); gap: 13px; }
+        .app-preview-card { border: 1px solid var(--ios-separator); border-radius: 19px; background: rgba(255,255,255,.82); box-shadow: 0 5px 18px rgba(50,60,75,.08); }
+        .app-preview-image { height: 132px; background: linear-gradient(135deg, #cfe6ff, #eaf3ff); }
+        .app-info { padding: 14px; }
+        .app-name { color: var(--ios-label); font-size: 17px; letter-spacing: -.02em; }
+        .app-category { color: var(--ios-blue); }
+        .app-details { color: var(--ios-secondary); }
+        .app-rating { color: #ff9500; }
+        .download-btn { padding: 11px 16px; border-radius: 12px; background: var(--ios-blue); font-size: 13px; }
+        .app-store-link { display: block; width: 100%; color: #ffffff; text-decoration: none; }
+
+        .contact-item { padding: 13px; margin-bottom: 10px; border: 1px solid var(--ios-separator); border-radius: 17px; background: rgba(255,255,255,.74); gap: 12px; }
+        .contact-icon { min-width: 38px; width: 38px; height: 38px; display: grid; place-items: center; border-radius: 12px; color: var(--ios-blue); background: rgba(0,122,255,.12); font-size: 20px; }
+        .contact-icon svg { width: 21px; height: 21px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+        .contact-content h3 { color: var(--ios-label); font-size: 15px; }
+        .contact-content p { color: var(--ios-secondary); }
+        .contact-apps-list { display: grid; gap: 8px; margin: -2px 0 16px; padding: 12px; border: 1px solid var(--ios-separator); border-radius: 18px; background: rgba(255,255,255,.56); }
+        .contact-apps-list h3 { margin: 0 4px 3px; color: var(--ios-label); font-size: 14px; }
+        .contact-apps-list > p { margin: 0 4px 5px; color: var(--ios-secondary); font-size: 11px; }
+        .contact-app-link { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 11px; border: 1px solid rgba(60,60,67,.10); border-radius: 13px; color: var(--ios-label); background: rgba(255,255,255,.78); text-decoration: none; transition: background .2s ease, border-color .2s ease, transform .2s ease; }
+        .contact-app-link strong { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
+        .contact-app-link span { flex: 0 0 auto; color: var(--ios-blue); font-size: 10px; font-weight: 800; }
+        .contact-app-link:hover { border-color: rgba(0,122,255,.3); background: #ffffff; transform: translateX(2px); }
+        .app-store-screen { background: var(--ios-grouped); }
+        .app-store-back { align-self: flex-start; margin: -4px 0 16px; padding: 0; border: 0; color: var(--ios-blue); background: transparent; font-size: 14px; font-weight: 700; cursor: pointer; }
+        .app-store-back:hover { color: #005ecb; }
+        .hire-card { margin: 0 0 18px; padding: 17px; border-radius: 19px; color: #ffffff; background: linear-gradient(135deg, #007aff, #005ecb); box-shadow: 0 10px 24px rgba(0,122,255,.24); }
+        .hire-card h3 { margin-bottom: 4px; font-size: 19px; letter-spacing: -.03em; }
+        .hire-card p { margin-bottom: 9px; color: rgba(255,255,255,.82); font-size: 12px; line-height: 1.45; }
+        .hire-email { display: block; margin-bottom: 13px; color: #ffffff; font-size: 11px; font-weight: 700; word-break: break-word; }
+        .hire-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+        .hire-button { display: inline-flex; align-items: center; gap: 7px; padding: 10px 14px; border: 0; border-radius: 11px; color: #0759b6; background: #ffffff; font-size: 12px; font-weight: 800; cursor: pointer; }
+        .hire-button.whatsapp-button { color: #ffffff; background: #25d366; }
+        .hire-button svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .hire-button:active { transform: scale(.95); }
+
+        .nav-bar { height: 67px; padding: 5px 8px 7px; border-top: 1px solid rgba(60,60,67,.18); background: rgba(249,249,251,.82); backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%); }
+        .nav-bar { position: relative; }
+        .journey-progress { position: absolute; top: -17px; left: 18px; right: 18px; display: flex; align-items: center; gap: 8px; color: rgba(28,28,30,.56); font-size: 9px; font-weight: 700; letter-spacing: .02em; pointer-events: none; }
+        .journey-progress b { color: var(--ios-blue); }
+        .journey-track { height: 3px; flex: 1; overflow: hidden; border-radius: 999px; background: rgba(60,60,67,.14); }
+        .journey-track i { display: block; width: 20%; height: 100%; border-radius: inherit; background: var(--ios-blue); transition: width .55s cubic-bezier(.22,1,.36,1); }
+        .scroll-top-button { position: absolute; right: 18px; bottom: 86px; z-index: 20; width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.72); border-radius: 50%; background: rgba(255,255,255,.72); color: var(--ios-blue); box-shadow: 0 7px 18px rgba(0,65,130,.16); backdrop-filter: blur(16px); opacity: 0; visibility: hidden; transform: translateY(8px) scale(.9); transition: opacity .25s ease, visibility .25s ease, transform .35s cubic-bezier(.34,1.56,.64,1); }
+        .scroll-top-button.visible { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+        .scroll-top-button svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+        :focus-visible { outline: 3px solid rgba(0,122,255,.42); outline-offset: 3px; }
+        .nav-item { min-height: 52px; border-radius: 14px; color: #8e8e93; font-size: 10px; font-weight: 600; }
+        .nav-item.visited:not(.active) { color: #5d9fe3; }
+        .nav-item.visited::after { content: ""; width: 3px; height: 3px; position: absolute; margin-top: 45px; border-radius: 50%; background: #5d9fe3; }
+        .nav-item.active { color: var(--ios-blue); background: transparent; box-shadow: none; transform: none; }
+        .nav-item.active .nav-icon { transform: scale(1.08); }
+        .nav-icon svg { width: 22px; height: 22px; stroke-width: 2.1; }
+        .safe-area-bottom { position: relative; height: 17px; background: rgba(249,249,251,.92); border-top: 0; }
+        .safe-area-bottom::after { content: ""; position: absolute; left: 50%; bottom: 5px; width: 104px; height: 4px; transform: translateX(-50%); border-radius: 999px; background: #1c1c1e; opacity: .82; }
+        .page-loader { background: rgba(242,242,247,.55); }
+        .page-loader-spinner { border-color: #d8eaff; border-top-color: var(--ios-blue); }
+        .splash-screen { background: linear-gradient(160deg, #eaf5ff 0%, #8dc3fb 58%, #f5f8ff 100%); color: var(--ios-label); }
+        .splash-logo { border-color: rgba(255,255,255,.86); box-shadow: 0 16px 35px rgba(19,83,145,.2); }
+        .splash-kicker { border-color: rgba(0,122,255,.25); color: #0759b6; }
+
+        /* iOS motion language */
+        .screen.active { animation: iosScreenPresent .42s cubic-bezier(.22, 1, .36, 1); }
+        .nav-item, .nav-icon, .cta-button, .download-btn, .contact-item, .app-preview-card, .skill-tag { transition-timing-function: cubic-bezier(.22, 1, .36, 1); }
+        .nav-item { transition: color .25s ease, transform .34s cubic-bezier(.34, 1.56, .64, 1); }
+        .nav-item:active { transform: scale(.9); }
+        .nav-item.active .nav-icon { animation: iosTabBounce .42s cubic-bezier(.34, 1.56, .64, 1); }
+        .nav-item.active span { animation: iosLabelFade .25s ease-out; }
+        .cta-button:active, .download-btn:active { transform: scale(.95); filter: brightness(.94); transition-duration: .12s; }
+        .contact-item:active, .app-preview-card:active { transform: scale(.975); transition-duration: .12s; }
+        .skill-tag:active { transform: scale(.94); transition-duration: .12s; }
+        .app-preview-card:hover .app-preview-image { transform: scale(1.015); }
+        .page-loader { transition: opacity .22s ease, visibility .22s ease; }
+        .page-loader-spinner { animation: iosSpinner .8s linear infinite; }
+
+        @keyframes iosScreenPresent {
+            from { opacity: 0; transform: scale(.985) translateY(8px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        @keyframes iosTabBounce {
+            0% { transform: scale(.76); }
+            68% { transform: scale(1.16); }
+            100% { transform: scale(1.08); }
+        }
+        @keyframes iosLabelFade {
+            from { opacity: .35; transform: translateY(2px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes iosSpinner { to { transform: rotate(360deg); } }
+        @keyframes iosSignalDot {
+            0%, 100% { opacity: .3; transform: scale(.72); box-shadow: 0 0 0 0 rgba(0,122,255,0); }
+            50% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 3px rgba(0,122,255,.12); }
+        }
+
+        /* Clear desktop pointer states */
+        @media (hover: hover) and (pointer: fine) {
+            body { cursor: none; }
+            button, a, .nav-item, .contact-item, .app-preview-card, .skill-tag { cursor: none; }
+            .nav-item:not(.active):hover { color: #005ecb; background: rgba(0,122,255,.10); transform: translateY(-2px); }
+            .nav-item.active:hover { background: rgba(0,122,255,.08); }
+            .app-preview-card:hover { background: #ffffff; border-color: rgba(0,122,255,.34); box-shadow: 0 12px 28px rgba(0,83,173,.15); }
+            .app-preview-card:hover .app-name { color: #005ecb; }
+            .contact-item:hover { background: #ffffff; border-color: rgba(0,122,255,.34); box-shadow: 0 8px 20px rgba(0,83,173,.13); }
+            .contact-item:hover .contact-content h3 { color: #005ecb; }
+            .contact-item:hover .contact-icon { color: #ffffff; background: var(--ios-blue); }
+            .skill-tag:hover { color: #ffffff; background: var(--ios-blue); box-shadow: 0 5px 12px rgba(0,122,255,.25); }
+            .home-meta span:hover { color: #ffffff; background: var(--ios-blue); }
+            .cta-button:hover, .download-btn:hover { color: #ffffff; background: #006ee6; filter: none; box-shadow: 0 10px 22px rgba(0,122,255,.32); }
+            .hire-button:hover { color: #004fae; background: #eaf4ff; transform: translateY(-1px); }
+            .hire-button.whatsapp-button:hover { color: #ffffff; background: #1fba59; }
+        }
+
+        .cursor-orb { display: none; }
+        @media (hover: hover) and (pointer: fine) {
+            .cursor-orb { display: block; position: fixed; z-index: 999; top: 0; left: 0; width: 22px; height: 22px; border: 1.5px solid rgba(0,122,255,.72); border-radius: 50%; pointer-events: none; transform: translate3d(-50%, -50%, 0); transition: width .2s ease, height .2s ease, background .2s ease, border-color .2s ease; mix-blend-mode: multiply; }
+            .cursor-orb::after { content: ""; position: absolute; top: 50%; left: 50%; width: 4px; height: 4px; border-radius: 50%; background: var(--ios-blue); transform: translate(-50%, -50%); box-shadow: 0 0 12px rgba(0,122,255,.65); }
+            .cursor-orb.is-hovering { width: 34px; height: 34px; background: rgba(0,122,255,.10); border-color: rgba(0,122,255,.35); }
+            .cursor-orb.is-down { width: 16px; height: 16px; background: rgba(0,122,255,.22); }
+        }
+
+        @media (max-width: 430px) {
+            body { padding: 0; }
+            .mobile-frame { width: 100%; height: 100vh; min-height: 680px; border: 0; border-radius: 0; }
+            .mobile-frame::before, .mobile-frame::after { display: none; }
+        }
     </style>
 </head>
 <body>
+    <div class="cursor-orb" aria-hidden="true"></div>
     <div class="mobile-frame">
         <div class="splash-screen" id="splashScreen">
             <img class="splash-logo" src="mobileAppDeveloperAsfar.png" alt="Asfar Hussain">
             <h1>Asfar Hussain</h1>
-            <p>Mobile App Developer</p>
+            <p>Mobile Application Developer</p>
             <p class="splash-kicker">iOS · Swift · SwiftUI</p>
             <div class="splash-loader" aria-label="Loading portfolio"><span></span><span></span><span></span></div>
         </div>
@@ -839,29 +1820,49 @@
                 <span>9:41</span>
             </div>
             <div class="status-right">
-                <span>📶</span>
-                <span>📡</span>
-                <span>🔋</span>
+                <span class="status-icon cellular-icon" aria-label="Cellular signal">
+                    <svg viewBox="0 0 18 12" aria-hidden="true"><path d="M1 11V9.2M5 11V7M9 11V4.5M13 11V2M17 11V.8"/></svg>
+                </span>
+                <span class="status-icon wifi-icon" aria-label="Wi-Fi connected">
+                    <svg viewBox="0 0 18 13" aria-hidden="true"><path d="M1.5 4.5a12 12 0 0 1 15 0M4.5 7.5a7.3 7.3 0 0 1 9 0M7.7 10.4a2.2 2.2 0 0 1 2.6 0"/><circle cx="9" cy="11.3" r=".8" fill="currentColor" stroke="none"/></svg>
+                </span>
+                <span class="status-icon battery-icon" aria-label="Battery full">
+                    <svg viewBox="0 0 25 12" aria-hidden="true"><rect x="1" y="1" width="21" height="10" rx="3"/><path d="M24 4v4"/><rect x="3.2" y="3.1" width="16.7" height="5.8" rx="1.7" fill="currentColor" stroke="none"/></svg>
+                </span>
             </div>
         </div>
 
         <div class="app-container">
             <!-- Home Screen -->
             <div class="screen home-screen active" id="home">
-                <div class="profile-avatar">
-                    <img src="https://avatars.githubusercontent.com/u/45183020?v=4" alt="Asfar">
+                <div class="home-topline"><span>Portfolio / 2026</span><span class="home-mark">AH</span></div>
+                <div class="home-content">
+                    <div class="profile-avatar"><img src="mobileAppDeveloperAsfar.png" alt="Portrait of Asfar Hussain"></div>
+                    <h1>Asfar Hussain</h1>
+                    <p class="home-role">Mobile Application Developer</p>
+                    <p class="home-title">Principal Software Engineer</p>
+                    <p class="home-copy">Lead iOS Developer crafting high-quality apps for iPhone, iPad, and macOS.</p>
                 </div>
-                <h1>Asfar</h1>
-                <p>iOS Developer</p>
-                <p>Creating Beautiful Apps</p>
-                <button class="cta-button" onclick="switchScreen('about')">Explore My Work</button>
+                <div class="home-footer">
+                    <div class="home-stats">
+                        <div class="home-stat"><strong>5+</strong><span>Years experience</span></div>
+                        <div class="home-stat"><strong>30+</strong><span>Projects delivered</span></div>
+                        <div class="home-stat"><strong>iOS</strong><span>Core expertise</span></div>
+                    </div>
+                    <div class="home-meta"><span>Swift</span><span>SwiftUI</span><span>UIKit</span><span>5+ years</span></div>
+                    <button class="cta-button" onclick="switchScreen('about')">Explore my work <span aria-hidden="true">↗</span></button>
+                </div>
             </div>
 
             <!-- About Screen -->
             <div class="screen about-screen" id="about">
                 <h2 class="section-title">About Me</h2>
                 <p class="about-text">
-                    I'm a passionate iOS developer with expertise in Swift, SwiftUI, and Objective-C. I create elegant, user-friendly applications that solve real-world problems. With multiple apps on the App Store, I'm dedicated to delivering exceptional mobile experiences.
+                    I'm a Lead iOS Developer with 5+ years of experience designing, developing, and deploying high-quality applications for iPhone, iPad, and macOS. I build elegant products with Swift, SwiftUI, UIKit, Objective-C, modern architecture, REST APIs, third-party SDKs, and thoughtful UI/UX workflows.
+                </p>
+                <h2 class="section-title">Career Objective</h2>
+                <p class="about-text objective-text">
+                    To contribute as a product-minded software engineer and technical leader, transforming business goals into secure, scalable, and high-quality mobile experiences. I aim to create measurable value through thoughtful architecture, reliable delivery, strong collaboration, and a continuous focus on customer needs.
                 </p>
                 
                 <h2 class="section-title">Skills</h2>
@@ -877,6 +1878,36 @@
                     <span class="skill-tag">App Store</span>
                     <span class="skill-tag">Firebase</span>
                 </div>
+                <h2 class="section-title">Work Experience</h2>
+                <div class="experience-list">
+                    <article class="experience-card" onclick="openExperienceDetails('gourmet')">
+                        <h3>Principal Software Engineer <span class="experience-company">· Gourmet Pakistan</span></h3>
+                        <span class="experience-date">Feb 2020 - Present</span>
+                        <span class="experience-current">Current role</span>
+                        <p>Requirements analysis, client communication, application and database architecture, bank integrations, deployment, and customer support across international markets.</p>
+                    </article>
+                    <article class="experience-card" onclick="openExperienceDetails('fiverivers')">
+                        <h3>Senior Software Engineer <span class="experience-company">· FiveRivers</span></h3>
+                        <span class="experience-date">Feb 2019 - Jan 2020 · Lahore, Pakistan</span>
+                        <p>Led requirements, architecture, and end-customer support for a UK retail suite product.</p>
+                    </article>
+                    <article class="experience-card" onclick="openExperienceDetails('techleadz')">
+                        <h3>Senior Software Engineer <span class="experience-company">· Techleadz</span></h3>
+                        <span class="experience-date">Aug 2017 - Jan 2019 · Lahore, Pakistan</span>
+                        <p>Developed web-based applications with .NET, Web Forms, and MVC in a collaborative team environment.</p>
+                    </article>
+                </div>
+            </div>
+
+            <div class="screen details-screen" id="experience-details">
+                <button class="details-back" onclick="switchScreen('about')">← Back to About</button>
+                <div class="details-kicker" id="details-kicker">Professional Experience</div>
+                <h2 id="details-title">Company Experience</h2>
+                <div class="details-period" id="details-period"></div>
+                <div class="details-card">
+                    <h3>Key responsibilities</h3>
+                    <ul id="details-list"></ul>
+                </div>
             </div>
 
             <!-- Skills Screen -->
@@ -888,11 +1919,8 @@
                     <div>
                         <span class="skill-tag">Swift</span>
                         <span class="skill-tag">Objective-C</span>
-                        <span class="skill-tag">JavaScript</span>
                         <span class="skill-tag">PHP</span>
                         <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Flutter</span>
-                        <span class="skill-tag">React Native</span>
                     </div>
                 </div>
 
@@ -913,14 +1941,9 @@
                     <div>
                         <span class="skill-tag">REST APIs</span>
                         <span class="skill-tag">Firebase</span>
-                        <span class="skill-tag">CloudKit</span>
-                        <span class="skill-tag">CoreLocation</span>
                         <span class="skill-tag">AVFoundation</span>
                         <span class="skill-tag">MapKit</span>
-                        <span class="skill-tag">HealthKit</span>
-                        <span class="skill-tag">Screen Time APIs</span>
-                        <span class="skill-tag">ARKit</span>
-                        <span class="skill-tag">FCM</span>
+                        <span class="skill-tag">Push Notifications</span>
                         <span class="skill-tag">Third-party SDKs</span>
                     </div>
                 </div>
@@ -930,11 +1953,12 @@
                     <div>
                         <span class="skill-tag">Xcode</span>
                         <span class="skill-tag">Git</span>
-                        <span class="skill-tag">CocoaPods</span>
-                        <span class="skill-tag">App Store</span>
                         <span class="skill-tag">Android Studio</span>
                         <span class="skill-tag">Postman</span>
                         <span class="skill-tag">OpenAI GPT</span>
+                        <span class="skill-tag">API Integrations</span>
+                        <span class="skill-tag">SAP</span>
+                        <span class="skill-tag">ERP</span>
                     </div>
                 </div>
 
@@ -949,15 +1973,29 @@
                         <span class="skill-tag">Push Notifications</span>
                     </div>
                 </div>
+
+                <div class="skill-category">
+                    <div class="category-title">🤖 AI & Automation</div>
+                    <div>
+                        <span class="skill-tag">AI Chatbots</span>
+                        <span class="skill-tag">OpenAI APIs</span>
+                        <span class="skill-tag">Prompt Engineering</span>
+                        <span class="skill-tag">Streaming Responses</span>
+                        <span class="skill-tag">Structured JSON</span>
+                        <span class="skill-tag">Conversation Context</span>
+                        <span class="skill-tag">Response Validation</span>
+                        <span class="skill-tag">Retry Handling</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Projects Screen - Live Apps -->
             <div class="screen projects-screen" id="projects">
-                <h2 class="section-title">My Live Apps 🚀</h2>
+                <h2 class="section-title">Apps & Projects 🚀</h2>
 
                 <!-- GFoods App -->
-                <div class="app-preview-card" data-app-id="1525122912" onclick="openAppStore('https://apps.apple.com/th/app/gfoods/id1525122912')">
-                    <div class="app-preview-image app-store-launch" role="link" tabindex="0" aria-label="Open GFoods in the App Store" onclick="openAppStore('https://apps.apple.com/th/app/gfoods/id1525122912')"><div class="creative-logo gfoods-logo"><svg viewBox="0 0 80 80" aria-hidden="true"><path d="M14 34h52l-5 9H19z" fill="#e85d3f"/><path d="M18 46h44v12H18z" fill="#f7a43b"/><path d="M22 58h36" stroke="#633c2d" stroke-width="6" stroke-linecap="round"/><path d="M25 28h30" stroke="#633c2d" stroke-width="6" stroke-linecap="round"/><circle cx="28" cy="40" r="4" fill="#fff"/><circle cx="51" cy="40" r="4" fill="#fff"/></svg></div><span>Open in App Store ↗</span></div>
+                <div class="app-preview-card" data-app-id="1525122912" onclick="openAppStore('https://apps.apple.com/pk/app/gfoods/id1525122912')">
+                    <div class="app-preview-image app-store-launch" role="link" tabindex="0" aria-label="Open GFoods in the App Store" onclick="openAppStore('https://apps.apple.com/pk/app/gfoods/id1525122912')"><div class="creative-logo gfoods-logo"><svg viewBox="0 0 80 80" aria-hidden="true"><path d="M14 34h52l-5 9H19z" fill="#e85d3f"/><path d="M18 46h44v12H18z" fill="#f7a43b"/><path d="M22 58h36" stroke="#633c2d" stroke-width="6" stroke-linecap="round"/><path d="M25 28h30" stroke="#633c2d" stroke-width="6" stroke-linecap="round"/><circle cx="28" cy="40" r="4" fill="#fff"/><circle cx="51" cy="40" r="4" fill="#fff"/></svg></div><span>Open in App Store ↗</span></div>
                     <div class="app-info">
                         <div class="app-name">GFoods</div>
                         <div class="app-category">Food & Dining</div>
@@ -967,13 +2005,13 @@
                         <li>Communicate with support through live chat.</li>
                     </ul>
                         <div class="app-rating">⭐ Available on App Store</div>
-                        <button class="download-btn" onclick="event.stopPropagation(); openAppStore('https://apps.apple.com/th/app/gfoods/id1525122912')">📥 View on App Store</button>
+                        <button class="download-btn" onclick="event.stopPropagation(); openAppStore('https://apps.apple.com/pk/app/gfoods/id1525122912')">📥 View on App Store</button>
                     </div>
                 </div>
 
                 <!-- G-Dukan App -->
-                <div class="app-preview-card" data-app-id="6593688174" onclick="openAppStore('https://apps.apple.com/us/app/g-dukan/id6593688174')">
-                    <div class="app-preview-image app-store-launch" role="link" tabindex="0" aria-label="Open G-Dukan in the App Store" onclick="openAppStore('https://apps.apple.com/us/app/g-dukan/id6593688174')"><div class="creative-logo gdukan-logo"><svg viewBox="0 0 80 80" aria-hidden="true"><path d="M15 33h50l-5 9H20z" fill="#1877f2"/><path d="M20 42h40v24H20z" fill="#fff" stroke="#315b9e" stroke-width="3"/><path d="M18 31h44" stroke="#173b68" stroke-width="5" stroke-linecap="round"/><path d="M29 48h8v10h-8zM44 48h8v10h-8z" fill="#8ab7ef"/><circle cx="40" cy="25" r="8" fill="#42b72a"/><path d="M40 20v10M35 25h10" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg></div><span>Open in App Store ↗</span></div>
+                <div class="app-preview-card" data-app-id="6593688174" onclick="openAppStore('https://apps.apple.com/gb/app/g-dukan/id6593688174?uo=2')">
+                    <div class="app-preview-image app-store-launch" role="link" tabindex="0" aria-label="Open G-Dukan in the App Store" onclick="openAppStore('https://apps.apple.com/gb/app/g-dukan/id6593688174?uo=2')"><div class="creative-logo gdukan-logo"><svg viewBox="0 0 80 80" aria-hidden="true"><path d="M15 33h50l-5 9H20z" fill="#1877f2"/><path d="M20 42h40v24H20z" fill="#fff" stroke="#315b9e" stroke-width="3"/><path d="M18 31h44" stroke="#173b68" stroke-width="5" stroke-linecap="round"/><path d="M29 48h8v10h-8zM44 48h8v10h-8z" fill="#8ab7ef"/><circle cx="40" cy="25" r="8" fill="#42b72a"/><path d="M40 20v10M35 25h10" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg></div><span>Open in App Store ↗</span></div>
                     <div class="app-info">
                         <div class="app-name">G-Dukan</div>
                         <div class="app-category">Shopping & Retail</div>
@@ -983,24 +2021,42 @@
                         <li>Supports dependable day-to-day delivery workflows.</li>
                     </ul>
                         <div class="app-rating">⭐ Available on App Store</div>
-                        <button class="download-btn" onclick="event.stopPropagation(); openAppStore('https://apps.apple.com/us/app/g-dukan/id6593688174')">📥 View on App Store</button>
+                        <button class="download-btn" onclick="event.stopPropagation(); openAppStore('https://apps.apple.com/gb/app/g-dukan/id6593688174?uo=2')">📥 View on App Store</button>
                     </div>
                 </div>
 
-                <!-- Tree Tracker Pro App -->
-                <div class="app-preview-card" data-app-id="6742592416" onclick="openAppStore('https://apps.apple.com/gb/app/planter-pro/id6742592416')">
-                    <div class="app-preview-image app-store-launch" role="link" tabindex="0" aria-label="Open Tree Tracker Pro in the App Store" onclick="openAppStore('https://apps.apple.com/gb/app/planter-pro/id6742592416')"><div class="creative-logo tree-logo"><svg viewBox="0 0 80 80" aria-hidden="true"><path d="M36 47h8v19h-8z" fill="#7b4b2a"/><circle cx="40" cy="29" r="18" fill="#42b72a"/><circle cx="26" cy="40" r="13" fill="#219653"/><circle cx="54" cy="40" r="13" fill="#2fa866"/><path d="M40 12c7 4 11 9 11 16-8 0-13-3-16-9 0-3 2-5 5-7z" fill="#7cd88e"/></svg></div><span>Open in App Store ↗</span></div>
-                    <div class="app-info">
-                        <div class="app-name">Tree Tracker Pro</div>
-                        <div class="app-category">Environment & Tracking</div>
-                    <ul class="app-details">
-                        <li>Draw custom plantation zones using map polygons with real-time area calculation.</li>
-                        <li>Add planters and crew chiefs, then calculate progress and salaries.</li>
-                        <li>Work offline and synchronize data when needed.</li>
-                    </ul>
-                        <div class="app-rating">⭐ Available on App Store</div>
-                        <button class="download-btn" onclick="event.stopPropagation(); openAppStore('https://apps.apple.com/gb/app/planter-pro/id6742592416')">📥 View on App Store</button>
-                    </div>
+                <div class="app-preview-card" onclick="openAppStore('https://apps.apple.com/us/app/perfumist-perfumes-advisor/id631338649')">
+                    <div class="app-preview-image">🧴</div><div class="app-info"><div class="app-name">Aromatic Fragrance International</div><div class="app-category">Industry & Commerce</div><ul class="app-details"><li>Essential oil and chemical industry project for an American customer.</li></ul><div class="app-rating">⭐ Available on App Store</div><button class="download-btn" onclick="event.stopPropagation();openAppStore('https://apps.apple.com/us/app/perfumist-perfumes-advisor/id631338649')">📥 View on App Store</button></div>
+                </div>
+                <div class="app-preview-card" onclick="openAppStore('https://apps.apple.com/us/app/ballogy-sports-training/id1276974145')">
+                    <div class="app-preview-image">🏀</div><div class="app-info"><div class="app-name">Ballogy</div><div class="app-category">Sports & Training</div><ul class="app-details"><li>Sports application supporting basketball, volleyball, tennis, and more.</li></ul><div class="app-rating">⭐ Available on App Store</div><button class="download-btn" onclick="event.stopPropagation();openAppStore('https://apps.apple.com/us/app/ballogy-sports-training/id1276974145')">📥 View on App Store</button></div>
+                </div>
+                <div class="app-preview-card" onclick="openAppStore('https://apps.apple.com/pk/app/dairy-fresh/id6469690897')">
+                    <div class="app-preview-image">🥛</div><div class="app-info"><div class="app-name">Dairy Fresh</div><div class="app-category">Retail & Delivery</div><ul class="app-details"><li>Order delivery application for placing orders for retailers.</li></ul><div class="app-rating">⭐ Available on App Store</div><button class="download-btn" onclick="event.stopPropagation();openAppStore('https://apps.apple.com/pk/app/dairy-fresh/id6469690897')">📥 View on App Store</button></div>
+                </div>
+                <div class="app-preview-card" onclick="openAppStore('https://apps.apple.com/pk/app/gnn-hd/id1447094128')">
+                    <div class="app-preview-image">📺</div><div class="app-info"><div class="app-name">GNN News Channel</div><div class="app-category">News & Streaming</div><ul class="app-details"><li>Built from scratch to deliver live news streaming to iOS customers.</li></ul><div class="app-rating">⭐ Available on App Store</div><button class="download-btn" onclick="event.stopPropagation();openAppStore('https://apps.apple.com/pk/app/gnn-hd/id1447094128')">📥 View on App Store</button></div>
+                </div>
+                <div class="app-preview-card"><div class="app-preview-image">🎥</div><div class="app-info"><div class="app-name">GNN Reporter App</div><div class="app-category">News & Media</div><ul class="app-details"><li>Reporter application built from scratch for uploading videos to the server.</li></ul></div></div>
+                <div class="app-preview-card"><div class="app-preview-image">🏪</div><div class="app-info"><div class="app-name">Gourmet GSSM</div><div class="app-category">Retail Management</div><ul class="app-details"><li>Retailer management system application for Gourmet operations.</li></ul></div></div>
+                <div class="app-preview-card"><div class="app-preview-image">💬</div><div class="app-info"><div class="app-name">G-Chat</div><div class="app-category">Communication</div><ul class="app-details"><li>Chatting application built for internal Gourmet communication.</li></ul></div></div>
+                <div class="app-preview-card"><div class="app-preview-image">👥</div><div class="app-info"><div class="app-name">GU</div><div class="app-category">Employee Management</div><ul class="app-details"><li>Web-based employee management system application.</li></ul></div></div>
+                <div class="app-preview-card"><div class="app-preview-image">🎟️</div><div class="app-info"><div class="app-name">Committee iOS App</div><div class="app-category">Rewards & Lottery</div><ul class="app-details"><li>Lucky draw application for awarding prizes after completion of specific tasks.</li></ul></div></div>
+                <div class="app-preview-card"><div class="app-preview-image">🔗</div><div class="app-info"><div class="app-name">GCO</div><div class="app-category">Cross-platform Business</div><ul class="app-details"><li>Cross-platform application combining NRP, GERP, and GU use cases.</li></ul></div></div>
+                <div class="app-preview-card"><div class="app-preview-image">🛒</div><div class="app-info"><div class="app-name">St. George Deals</div><div class="app-category">E-commerce</div><ul class="app-details"><li>E-commerce application for buying products.</li></ul></div></div>
+                <div class="app-preview-card"><div class="app-preview-image">🛠️</div><div class="app-info"><div class="app-name">iNeedPros</div><div class="app-category">Services Marketplace</div><ul class="app-details"><li>Helps customers find nearby service providers with good ratings and minimum cost.</li></ul></div></div>
+                <div class="app-preview-card"><div class="app-preview-image">🧺</div><div class="app-info"><div class="app-name">Click Dry Clean</div><div class="app-category">Laundry Service</div><ul class="app-details"><li>Admin laundry service app with barcode scanning and order status tracking for private, VIP, and hotel orders.</li></ul></div></div>
+                <div class="app-preview-card"><div class="app-preview-image">🩺</div><div class="app-info"><div class="app-name">Online Doctor - Cardea</div><div class="app-category">Healthcare</div><ul class="app-details"><li>Doctor discovery, appointment booking, payments, and visual care with chat, audio, and video calling using MDLive SDK and APIs.</li></ul></div></div>
+                <div class="app-preview-card ai-project-card"><div class="app-preview-image">🤖</div><div class="app-info"><div class="app-name">AI Chat & Assistant Experiences</div><div class="app-category">Generative AI & Product Engineering</div><ul class="app-details"><li>Integrated OpenAI APIs into mobile products for conversational AI assistants and content generation.</li><li>Built prompt flows with streaming responses, structured JSON output, and conversation context.</li><li>Added response validation, retry handling, and secure backend communication for dependable AI features.</li></ul></div></div>
+            </div>
+
+            <div class="screen app-store-screen" id="app-store">
+                <button class="app-store-back" type="button" onclick="switchScreen('contact')">‹ Back to Contact</button>
+                <h2 class="section-title">App Store</h2>
+                <p class="about-text">Explore all of my applications and open their App Store pages below.</p>
+                <div class="contact-apps-list" id="contactAppsList" aria-label="All App Store application links">
+                    <h3>All applications</h3>
+                    <p>All projects are shown. App Store actions appear only where a link is available.</p>
                 </div>
             </div>
 
@@ -1008,8 +2064,18 @@
             <div class="screen contact-screen" id="contact">
                 <h2 class="section-title">Get In Touch</h2>
 
+                <div class="hire-card">
+                    <h3>Have a mobile app in mind?</h3>
+                    <p>Let’s build a polished iOS experience that turns your idea into something people love to use.</p>
+                    <span class="hire-email">asferhussainsidiqui@gmail.com</span>
+                    <div class="hire-actions">
+                        <button class="hire-button" type="button" onclick="sendEmail('asferhussainsidiqui@gmail.com')">Email Me <span aria-hidden="true">↗</span></button>
+                        <button class="hire-button whatsapp-button" type="button" onclick="openLink('https://wa.me/923234278971')">WhatsApp <span aria-hidden="true">↗</span></button>
+                    </div>
+                </div>
+
                 <div class="contact-item" onclick="sendEmail('asferhussainsidiqui@gmail.com')">
-                    <div class="contact-icon">✉️</div>
+                    <div class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg></div>
                     <div class="contact-content">
                         <h3>Email</h3>
                         <p>asferhussainsidiqui@gmail.com</p>
@@ -1017,7 +2083,7 @@
                 </div>
 
                 <div class="contact-item" onclick="callPhone('+923234278971')">
-                    <div class="contact-icon">📱</div>
+                    <div class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"></rect><path d="M10 18h4"></path></svg></div>
                     <div class="contact-content">
                         <h3>Mobile</h3>
                         <p>+92 323 4278971</p>
@@ -1025,23 +2091,23 @@
                 </div>
 
                 <div class="contact-item" onclick="openLink('https://github.com/appleiOSdevelopers')">
-                    <div class="contact-icon">🐙</div>
+                    <div class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-3 17v-3c-2 0-3-1-3-3 0-1 0-2-1-3 2 0 3 1 4 2 1-1 2-1 3-1s2 0 3 1c1-1 2-2 4-2-1 1-1 2-1 3 0 2-1 3-3 3v3A9 9 0 0 0 12 3z"></path></svg></div>
                     <div class="contact-content">
                         <h3>GitHub</h3>
                         <p>appleiOSdevelopers</p>
                     </div>
                 </div>
 
-                <div class="contact-item" onclick="openAppStore('https://apps.apple.com/developer/asfar')">
-                    <div class="contact-icon">📲</div>
+                <div class="contact-item" onclick="switchScreen('app-store')">
+                    <div class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v8"></path><path d="m8 7 4-4 4 4"></path><rect x="5" y="11" width="14" height="9" rx="2"></rect></svg></div>
                     <div class="contact-content">
                         <h3>App Store</h3>
-                        <p>View All My Apps</p>
+                        <p>View all applications in card view</p>
                     </div>
                 </div>
 
                 <div class="contact-item" onclick="openLink('https://twitter.com')">
-                    <div class="contact-icon">𝕏</div>
+                    <div class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4 19 20"></path><path d="M19 4 5 20"></path></svg></div>
                     <div class="contact-content">
                         <h3>Twitter</h3>
                         <p>Follow my journey</p>
@@ -1049,7 +2115,7 @@
                 </div>
 
                 <div class="contact-item" onclick="openLink('https://www.linkedin.com/in/asfarhussainsiddiqui/')">
-                    <div class="contact-icon">💼</div>
+                    <div class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="7" width="16" height="13" rx="2"></rect><path d="M9 7V5h6v2M4 12h16M10 12v2h4v-2"></path></svg></div>
                     <div class="contact-content">
                         <h3>LinkedIn</h3>
                         <p>Connect with me</p>
@@ -1058,8 +2124,16 @@
             </div>
         </div>
 
+        <button class="scroll-top-button" type="button" aria-label="Scroll to top">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 11 6-6 6 6M12 5v14"/></svg>
+        </button>
+
         <!-- Navigation Bar -->
         <div class="nav-bar">
+            <div class="journey-progress" aria-label="Portfolio exploration progress">
+                <span>Explored <b id="journeyCount">1/5</b></span>
+                <div class="journey-track"><i id="journeyFill"></i></div>
+            </div>
             <div class="nav-item active" onclick="switchScreen('home')">
                 <div class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7"></path><path d="M5 9v11h14V9"></path><path d="M9 20v-6h6v6"></path></svg></div>
                 <span>Home</span>
@@ -1086,6 +2160,48 @@
     </div>
 
     <script>
+        const portfolioSections = ['home', 'about', 'skills', 'projects', 'contact'];
+        let journeyState = { visited: ['home'], scroll: {} };
+
+        try {
+            const savedJourney = JSON.parse(localStorage.getItem('asfarPortfolioJourney') || 'null');
+            if (savedJourney && Array.isArray(savedJourney.visited)) journeyState = savedJourney;
+        } catch (error) {
+            // Continue with a fresh session when browser storage is unavailable.
+        }
+
+        function saveJourneyState() {
+            try { localStorage.setItem('asfarPortfolioJourney', JSON.stringify(journeyState)); } catch (error) {}
+        }
+
+        function updateJourneyProgress() {
+            const app = document.querySelector('.app-container');
+            const activeScreen = document.querySelector('.screen.active');
+            if (activeScreen && portfolioSections.includes(activeScreen.id)) {
+                const scrollable = app.scrollHeight > app.clientHeight + 8;
+                journeyState.scroll[activeScreen.id] = scrollable ? Math.min(1, (app.scrollTop + app.clientHeight) / app.scrollHeight) : 1;
+            }
+
+            const completed = portfolioSections.filter(function(section) {
+                return journeyState.visited.includes(section) && (journeyState.scroll[section] || 0) >= .92;
+            }).length;
+            const percent = Math.max(20, (completed / portfolioSections.length) * 100);
+            document.getElementById('journeyCount').textContent = completed + '/5';
+            document.getElementById('journeyFill').style.width = percent + '%';
+            document.querySelectorAll('.nav-item').forEach(function(item) {
+                const label = item.textContent.trim().toLowerCase();
+                const section = label === 'apps' ? 'projects' : label;
+                item.classList.toggle('visited', journeyState.visited.includes(section));
+            });
+            saveJourneyState();
+        }
+
+        function markSectionVisited(screenId) {
+            const section = screenId === 'experience-details' ? 'about' : (screenId === 'app-store' ? 'projects' : screenId);
+            if (portfolioSections.includes(section) && !journeyState.visited.includes(section)) journeyState.visited.push(section);
+            updateJourneyProgress();
+        }
+
         function switchScreen(screenId) {
             const loader = document.getElementById('pageLoader');
             loader.classList.add('show');
@@ -1098,17 +2214,42 @@
                 navItems.forEach(item => item.classList.remove('active'));
                 navItems.forEach(btn => {
                     if (btn.textContent.toLowerCase().includes(screenId) ||
-                        (screenId === 'projects' && btn.textContent.includes('Apps'))) {
+                        ((screenId === 'projects' || screenId === 'app-store') && btn.textContent.includes('Apps'))) {
                         btn.classList.add('active');
                     }
                 });
                 document.querySelector('.app-container').scrollTop = 0;
+                markSectionVisited(screenId);
                 loader.classList.remove('show');
             }, 260);
         }
 
         function sendEmail(email) {
             window.location.href = 'mailto:' + email;
+        }
+
+        function openExperienceDetails(company) {
+            const details = {
+                gourmet: {
+                    title: 'Principal Software Engineer · Gourmet Pakistan',
+                    period: 'Feb 2020 - Present',
+                    points: ['Requirements analysis and client communication', 'Application and database architecture', 'Application development and deployment with bank integrations', 'End-customer support across the UK, USA, Canada, Africa, and Indonesia']
+                },
+                fiverivers: {
+                    title: 'Senior Software Engineer · FiveRivers',
+                    period: 'Feb 2019 - Jan 2020 · Lahore, Pakistan',
+                    points: ['Requirements analysis and client communication', 'Application and database architecture', 'Customer support for a UK retail suite product']
+                },
+                techleadz: {
+                    title: 'Senior Software Engineer · Techleadz',
+                    period: 'Aug 2017 - Jan 2019 · Lahore, Pakistan',
+                    points: ['Developed web-based applications using .NET, Web Forms, and MVC', 'Worked in a collaborative team environment with shared and disciplined practices']
+                }
+            }[company];
+            document.getElementById('details-title').textContent = details.title;
+            document.getElementById('details-period').textContent = details.period;
+            document.getElementById('details-list').innerHTML = details.points.map(function(point) { return '<li>' + point + '</li>'; }).join('');
+            switchScreen('experience-details');
         }
 
         function callPhone(phone) {
@@ -1149,7 +2290,46 @@
             });
         }
 
+        function buildContactAppStoreList() {
+            const list = document.getElementById('contactAppsList');
+            document.querySelectorAll('#projects .app-preview-card').forEach(function(card) {
+                const nameElement = card.querySelector('.app-name');
+                if (!nameElement) return;
+                const name = nameElement.textContent.trim();
+                const action = card.getAttribute('onclick') || (card.querySelector('[onclick]') && card.querySelector('[onclick]').getAttribute('onclick')) || '';
+                const directMatch = action.match(/https:\/\/apps\.apple\.com\/[^'\")]+/);
+                const item = document.createElement(directMatch ? 'a' : 'div');
+                item.className = 'contact-app-link' + (directMatch ? '' : ' no-link');
+                if (directMatch) {
+                    item.href = directMatch[0];
+                    item.target = '_blank';
+                    item.rel = 'noopener noreferrer';
+                }
+                item.innerHTML = '<strong>' + name + '</strong>' + (directMatch ? '<span>Open App Store ↗</span>' : '');
+                list.appendChild(item);
+            });
+        }
+
         // Add touch feedback
+        document.querySelector('.app-container').addEventListener('scroll', updateJourneyProgress, { passive: true });
+        updateJourneyProgress();
+        const scrollTopButton = document.querySelector('.scroll-top-button');
+        document.querySelector('.app-container').addEventListener('scroll', function() {
+            scrollTopButton.classList.toggle('visible', this.scrollTop > 220);
+        }, { passive: true });
+        scrollTopButton.addEventListener('click', function() {
+            document.querySelector('.app-container').scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        const cursorOrb = document.querySelector('.cursor-orb');
+        if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+            document.addEventListener('pointermove', function(event) {
+                cursorOrb.style.left = event.clientX + 'px';
+                cursorOrb.style.top = event.clientY + 'px';
+                cursorOrb.classList.toggle('is-hovering', Boolean(event.target.closest('button, a, .nav-item, .contact-item, .app-preview-card, .skill-tag')));
+            });
+            document.addEventListener('pointerdown', function() { cursorOrb.classList.add('is-down'); });
+            document.addEventListener('pointerup', function() { cursorOrb.classList.remove('is-down'); });
+        }
         document.querySelectorAll('.contact-item, .app-preview-card, .cta-button, .nav-item, .download-btn').forEach(element => {
             element.addEventListener('touchstart', function() {
                 this.style.opacity = '0.7';
@@ -1159,7 +2339,10 @@
             });
         });
         window.addEventListener('load', function() {
-            loadAppStoreIcons();
+            document.body.classList.add('loaded');
+            buildContactAppStoreList();
+            // Load optional remote artwork after the first screen is interactive.
+            setTimeout(loadAppStoreIcons, 2200);
             setTimeout(function() {
                 document.getElementById('splashScreen').classList.add('hide');
             }, 1800);
