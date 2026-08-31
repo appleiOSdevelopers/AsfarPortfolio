@@ -241,6 +241,46 @@
             color: white;
         }
 
+        .app-preview-image.has-app-icon {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .app-preview-image.has-app-icon::after {
+            content: "  App Store";
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            padding: 6px 9px;
+            border-radius: 8px;
+            color: white;
+            background: rgba(0, 0, 0, .65);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .app-preview-image.has-app-icon {
+            font-size: 0;
+        }
+
+        .app-store-launch {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .app-store-launch span {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            padding: 7px 10px;
+            border-radius: 9px;
+            background: rgba(0, 0, 0, .62);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
         .app-info {
             padding: 15px;
             display: flex;
@@ -447,6 +487,7 @@
         .download-btn {
             width: 100%;
         }
+
 
         /* Cohesive portfolio color system */
         body {
@@ -878,8 +919,8 @@
                 <h2 class="section-title">My Live Apps 🚀</h2>
 
                 <!-- GFoods App -->
-                <div class="app-preview-card" onclick="openAppStore('https://apps.apple.com/th/app/gfoods/id1525122912')">
-                    <div class="app-preview-image">🍔</div>
+                <div class="app-preview-card" data-app-id="1525122912" onclick="openAppStore('https://apps.apple.com/th/app/gfoods/id1525122912')">
+                    <div class="app-preview-image app-store-launch" role="link" tabindex="0" aria-label="Open GFoods in the App Store" onclick="openAppStore('https://apps.apple.com/th/app/gfoods/id1525122912')">🍔<span>Open in App Store ↗</span></div>
                     <div class="app-info">
                         <div class="app-name">GFoods</div>
                         <div class="app-category">Food & Dining</div>
@@ -894,7 +935,7 @@
                 </div>
 
                 <!-- G-Dukan App -->
-                <div class="app-preview-card" onclick="openAppStore('https://apps.apple.com/us/app/g-dukan/id6593688174')">
+                <div class="app-preview-card" data-app-id="6593688174" onclick="openAppStore('https://apps.apple.com/us/app/g-dukan/id6593688174')">
                     <div class="app-preview-image">🏪</div>
                     <div class="app-info">
                         <div class="app-name">G-Dukan</div>
@@ -910,7 +951,7 @@
                 </div>
 
                 <!-- Tree Tracker Pro App -->
-                <div class="app-preview-card" onclick="openAppStore('https://apps.apple.com/gb/app/planter-pro/id6742592416')">
+                <div class="app-preview-card" data-app-id="6742592416" onclick="openAppStore('https://apps.apple.com/gb/app/planter-pro/id6742592416')">
                     <div class="app-preview-image">🌳</div>
                     <div class="app-info">
                         <div class="app-name">Tree Tracker Pro</div>
@@ -1053,6 +1094,24 @@
             window.open(url, '_blank');
         }
 
+        async function loadAppStoreIcons() {
+            const cards = document.querySelectorAll('.app-preview-card[data-app-id]');
+            cards.forEach(async function(card) {
+                try {
+                    const response = await fetch('https://itunes.apple.com/lookup?id=' + card.dataset.appId);
+                    const result = await response.json();
+                    const artwork = result.results && result.results[0] && result.results[0].artworkUrl100;
+                    if (artwork) {
+                        const image = card.querySelector('.app-preview-image');
+                        image.style.backgroundImage = 'url("' + artwork.replace('100x100', '600x600') + '")';
+                        image.classList.add('has-app-icon');
+                    }
+                } catch (error) {
+                    // Keep the built-in artwork fallback when Apple artwork is unavailable.
+                }
+            });
+        }
+
         // Add touch feedback
         document.querySelectorAll('.contact-item, .app-preview-card, .cta-button, .nav-item, .download-btn').forEach(element => {
             element.addEventListener('touchstart', function() {
@@ -1063,6 +1122,7 @@
             });
         });
         window.addEventListener('load', function() {
+            loadAppStoreIcons();
             setTimeout(function() {
                 document.getElementById('splashScreen').classList.add('hide');
             }, 1800);
