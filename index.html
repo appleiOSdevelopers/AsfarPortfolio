@@ -232,7 +232,7 @@
 
         .app-preview-image {
             width: 100%;
-            height: 160px;
+            height: 140px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
@@ -245,6 +245,7 @@
             padding: 15px;
             display: flex;
             flex-direction: column;
+            flex: 1;
         }
 
         .app-name {
@@ -264,13 +265,12 @@
         .app-description {
             font-size: 13px;
             color: #666;
-            line-height: 1.4;
+            line-height: 1.5;
             margin-bottom: 10px;
             flex: 1;
-            min-height: 30px;
-            max-height: 50px;
             word-wrap: break-word;
             word-break: break-word;
+            overflow: visible;
         }
 
         .app-rating {
